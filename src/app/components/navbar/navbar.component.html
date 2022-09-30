@@ -1,0 +1,18 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div><a routerLink="/" class="navbar-brand">Pension Management System</a></div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse  justify-content-end">
+        <ul class="navbar-nav">
+          <li><a *ngIf="loggedIn" routerLink="/pensionerList" routerLinkActive="bg-light text-dark fw-bold" class="nav-link">Pensioner List</a></li>
+          <li><a *ngIf="loggedIn" routerLink="/transactionList" routerLinkActive="bg-light text-dark fw-bold" class="nav-link">Transaction List</a></li>
+      </ul>
+      <ul class="navbar-nav navbar-collapse justify-content-end">
+          <li><a *ngIf="loggedIn" routerLink="/pensionCalculation" routerLinkActive="bg-light text-dark fw-bold" class="nav-link">Calculate Pension</a></li>
+          <li><a (click)="logoutUser()" class="nav-link">LOGOUT</a></li>
+      </ul>
+      </div>      
+  </nav>
+</header>

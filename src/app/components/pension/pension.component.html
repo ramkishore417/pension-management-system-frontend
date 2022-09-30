@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="table-header">
+        <h1 class="text-center mt-5">CALCULATE PENSION AMOUNT</h1>
+    </div>
+</div>  
+
+<div class="container py-3">
+    <div class="row">
+        <div class="col-lg-6 mx-auto rounded shadow" style="height: 90px"> 
+
+            <form class="row mt-4" (ngSubmit)="onSubmit()">
+
+                <div class="col-6">
+                    <label for="aadhaarnumber" class="visually-hidden">Aadhaar Number</label>
+                    <input type="text" name="aadhaarNumber" [(ngModel)]="inputAadhaarNumber.aadhaarNumber" required="" 
+                        #aadhaar="ngModel" class="form-control" id="aadhaarnumber" placeholder="Enter Aadhaar No.">
+                        
+                    <small *ngIf="aadhaar.touched && aadhaar.invalid" class="text-danger">
+                        <div *ngIf="aadhaar.errors?.['required']">Aadhaar Number is Required!</div> 
+                    </small>
+                </div>
+                        
+                <div class="col-6">
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="submit" class="btn btn-outline-primary" [disabled]="aadhaar.invalid">Calculate Pension</button>
+                        <button type="reset" class="btn btn-outline-dark">Reset</button>
+                    </div>
+                </div>
+            </form>   
+                
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div *ngFor="let data of pension" class="card m-2" style="width: 50rem;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item fw-bold">Pensioner Details :</li>
+                        <li class="list-group-item">
+                        <table class="table table-striped-columns">
+                            <tbody class="fw-semibold font-monospace">
+                            <tr><td>Name</td><td>{{data.pensionerDetail.name}}</td></tr>
+                            <tr><td>D.O.B</td><td>{{data.pensionerDetail.dateOfBirth}}</td></tr>
+                            <tr><td>PAN</td><td>{{data.pensionerDetail.pan}}</td></tr>
+                            <tr><td>Type</td><td>{{data.pensionerDetail.pensionType.toUpperCase()}}</td></tr>
+                        </tbody>
+                        </table>
+                    </li>
+                        <li class="list-group-item fw-bold">Bank Account Details :</li>
+                        <li class="list-group-item">
+                        <table class="table table-striped-columns">
+                            <tbody class="fw-semibold font-monospace">
+                            <tr><td>Name</td><td>{{data.pensionerDetail.bankDetail.bankName}}</td></tr>
+                            <tr><td>Number</td><td>{{data.pensionerDetail.bankDetail.accountNumber}}</td></tr>
+                            <tr><td>Type</td><td>{{data.pensionerDetail.bankDetail.bankType.toUpperCase()}}</td></tr>
+                        </tbody>
+                        </table>
+                    </li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item fw-bold">Salary Details :</li>
+                        <li class="list-group-item">
+                            <table class="table table-striped-columns">
+                                <tbody class="fw-semibold font-monospace">
+                                <tr><td>Salary Earned</td><td class="fw-bolder text-green">₹ {{data.pensionerDetail.salaryEarned}}/-</td></tr>
+                                <tr><td>Allowances</td><td class="fw-bolder text-green">₹ {{data.pensionerDetail.allowances}}/-</td></tr>
+                            </tbody>
+                            </table>
+                        </li>
+                        <li class="list-group-item fw-bold">Pension Details :</li>
+                        <li class="list-group-item">
+                        <table class="table table-striped-columns">
+                            <tbody class="fw-semibold font-monospace">
+                            <tr><td>Pension Amount</td><td class="fw-bolder text-green">₹ {{data.pensionAmount}}/-</td></tr>
+                            <tr><td>Bank Charge</td><td class="fw-bolder text-green">₹ {{data.bankCharge}}/-</td></tr>
+                        </tbody>
+                        </table>
+                    </li>
+                    </ul>
+                    <div class="card-footer justify-content-end">
+                        <button type="button" (click)="processPension()" class="btn btn-outline-success">Process Pension</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

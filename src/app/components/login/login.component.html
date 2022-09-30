@@ -1,0 +1,40 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+      <div class="col-md-4 offset-md-4">
+          <div class="card">
+              <!-- card header -->
+              <span class="card-header" >Enter Login Credentials here!</span>
+              <!-- card body -->
+              
+              <div class="card-body">
+                  <form (ngSubmit)="onSubmit()">
+
+                      <div class="mb-4">
+                          <label for="exampleInputEmail1" class="form-label">Username</label>
+                          <input  [(ngModel)]="login.username" name="username" required
+                          type="text" #UsernameControl="ngModel" placeholder="Enter Valid Username" class="form-control" id="exampleInputEmail1">                            
+                          <div class="form-text text-danger" *ngIf="UsernameControl.touched && UsernameControl.invalid">
+                              <span *ngIf="UsernameControl.errors?.['required']">Username is required</span>
+                          </div>
+                      </div>
+                      
+                      <div class="mb-3">
+                          <label for="exampleInputPassword" class="form-label">Password</label>
+                          <input [(ngModel)]="login.password" name="password" required
+                          type="password" #PasswordControl="ngModel" placeholder="Enter Valid Password" class="form-control" id="exampleInputPassword">
+                          <div class="form-text text-danger" *ngIf="PasswordControl.touched && PasswordControl.invalid">
+                              <span *ngIf="PasswordControl.errors?.['required']">Password is required</span>
+                          </div>
+                      </div>
+
+                      <div class="container-fluid">
+                        <button type="submit" class="btn btn-success">Login</button>
+                        <button type="reset" class=" mx-2 btn btn-dark">Reset</button>
+                      </div>
+
+                  </form>
+              </div>            
+          </div>
+      </div>
+  </div>    
+</div>
